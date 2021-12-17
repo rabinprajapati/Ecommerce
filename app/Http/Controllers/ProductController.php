@@ -34,4 +34,10 @@ class ProductController extends Controller
         $userId=Session::get('user')['id'];
         return Cart::where('user_id',$userId)->count();
     }
+
+    public function search(Request $req)
+    {
+        $data=Product::where('productName','like','%'.$req->input('query').'%')->get();
+        return view('search',['products'=>$data]);
+    }
 }
