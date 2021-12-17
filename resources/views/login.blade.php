@@ -1,6 +1,6 @@
 @extends('layout')
 @section('content')
- <h1>login page</h1>
+ <h1>login</h1>
  <div class="container">
     <div class="row">
         <form action="login" method="POST" >
