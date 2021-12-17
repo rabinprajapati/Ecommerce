@@ -25,9 +25,8 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Product List</a>
+          <a class="nav-link" href="/products">Product List</a>
         </li>
-  
       <form action="search" method="get" class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" name="query" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
@@ -47,7 +46,7 @@
       @endif
     </div>
     <div class="cart">
-      <div>Cart({{$total}})</div>
+      <a href="/cart"><div>Cart({{$total}})</div></a>
     </div>
     </ul>
    

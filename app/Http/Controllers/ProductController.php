@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\Cart;
 use Session;
@@ -13,6 +14,11 @@ class ProductController extends Controller
         //return view('index');
         $products=Product::all();
         return view('product',['products'=>$products]);
+    }
+    public function allProduct(){
+        //return view('index');
+        $products=Product::all();
+        return view('allProduct',['products'=>$products]);
     }
     public function detail($id){
         $data=Product::find($id);
@@ -27,7 +33,7 @@ class ProductController extends Controller
             return redirect('/products');
         }
         else{
-            return redirect('/');
+            return redirect('/login');
         }
     }
     static function cartItem(){
@@ -39,5 +45,15 @@ class ProductController extends Controller
     {
         $data=Product::where('productName','like','%'.$req->input('query').'%')->get();
         return view('search',['products'=>$data]);
+    }
+    public function cart()
+    {
+        $userId=Session::get('user')->id;
+        $products=DB::table('cart')
+                    ->join('products','cart.product_id','=','products.id')
+                    ->where('cart.user_id',$userId)
+                    ->select('products.*')
+                    ->get();
+        return view('cart',['cartlist'=>$products]);
     }
 }
