@@ -22,10 +22,12 @@ Route::get('/login', function () {
 });
 Route::get('/logout',[UserController::class,'logout']);
 Route::post('/login',[UserController::class,'login']);
+Route::get('/register',[UserController::class,'register']);
+Route::post('/register',[UserController::class,'registerUser']);
+
 Route::get('/products',[ProductController::class,'allProduct']);
 Route::get('detail/{id}',[ProductController::class,'detail']);
 Route::post('/addToCart',[ProductController::class,'addToCart']);
-
 Route::get('/search',[ProductController::class,'search']);
-
 Route::get('/cart',[ProductController::class,'cart']);
+Route::get('/removeCart/{id}',[ProductController::class,'removeCart']);

@@ -22,6 +22,11 @@
         .detail-img{
             height: 300px;
         }
+        .cart-item{
+            margin: 2px;
+            border-bottom: 1px solid gray;
+            padding: 30px
+        }
     </style>
 </head>
 <body>

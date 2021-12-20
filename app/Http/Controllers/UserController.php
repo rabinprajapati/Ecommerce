@@ -19,6 +19,19 @@ class UserController extends Controller
             return redirect('/products');
         }
     }
+    public function register()
+    {
+        return view ('register');
+    }
+    public function registerUser(Request $req)
+    {
+        $user=new User();
+        $user->userName=$req->userName;
+        $user->userEmail=$req->userEmail;
+        $user->userPassword=$req->userPassword;
+        $user->save();
+        return view('/login');
+    }
     public function logout(){
         Session::forget('user');
         return view('/login');
