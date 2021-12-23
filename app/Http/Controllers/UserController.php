@@ -4,15 +4,18 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use Session;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
     public function login(Request $req){
     
         $user= User::where(['userEmail'=>$req->userEmail])->first();
-        if(!$user || $user->userPassword!=$req->userPassword){
-            return 'username or password mismatch';
+        if(!$user || !Hash::check($req->userPassword,$user->userPassword))
+        {
+            Session::put('message','username or password mismatch!');
+            return redirect('/login');
         }
         else{
             $req->session()->put('user',$user);
@@ -28,7 +31,7 @@ class UserController extends Controller
         $user=new User();
         $user->userName=$req->userName;
         $user->userEmail=$req->userEmail;
-        $user->userPassword=$req->userPassword;
+        $user->userPassword=Hash::make($req->userPassword);
         $user->save();
         return view('/login');
     }

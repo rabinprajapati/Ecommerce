@@ -1,6 +1,10 @@
 @extends('layout')
 @section('content')
  <h1>login</h1>
+ @if(Session::has('message'))
+ <p class="alert alert-info">{{ Session::get('message') }}</p>
+ {{Session::forget('message')}}
+ @endif
  <div class="container">
     <div class="row">
         <form action="login" method="POST" >
