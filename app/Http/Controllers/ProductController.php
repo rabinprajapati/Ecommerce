@@ -56,9 +56,25 @@ class ProductController extends Controller
                     ->get();
         return view('cart',['cartlist'=>$products]);
     }
+    public function editProduct($id)
+    {
+        $product=Product::find($id);
+        return view('editProduct',['product'=>$product]);
+    }
+    public function saveEdit(Request $req)
+    {
+        $product=Product::find($req->productId);
+        $product->productName=$req->productName;
+        $product->productPrice=$req->productPrice;
+        $product->productCategory=$req->productCategory;
+        $product->productDescription=$req->productDescription;
+        $product->save();
+        return redirect('/products');
+    }
     public function removeCart($id)
     {
         Cart::destroy($id);
         return redirect('/cart');
     }
+
 }

@@ -27,6 +27,9 @@
             border-bottom: 1px solid gray;
             padding: 30px
         }
+        .editProduct{
+            height: 150px;
+        }
     </style>
 </head>
 <body>
